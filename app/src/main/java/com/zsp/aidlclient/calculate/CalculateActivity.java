@@ -50,7 +50,7 @@ public class CalculateActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void onServiceDisconnected(ComponentName name) {
             calculateAidl = null;
-            Log.d(TAG, "onServiceDisconnected null");
+            Log.d(TAG, "onServiceDisconnected");
         }
     };
 
@@ -78,13 +78,13 @@ public class CalculateActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void startLogic() {
-        intentService();
+        bindService();
     }
 
-    private void intentService() {
+    private void bindService() {
         Intent intent = new Intent();
         intent.setPackage("com.zsp.aidlserver");
-        intent.setAction("com.zsp.aidlserver.action");
+        intent.setAction("com.zsp.aidlserver.calculate.action");
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
     }
 
@@ -93,6 +93,10 @@ public class CalculateActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         int x = Integer.parseInt(calculateActivityEtNumberOne.getText().toString());
         int y = Integer.parseInt(calculateActivityEtNumberTwo.getText().toString());
+        if (null == calculateAidl) {
+            Toast.makeText(this, "CalculateAIDL null", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             switch (v.getId()) {
                 case R.id.calculateActivityMbAdd:

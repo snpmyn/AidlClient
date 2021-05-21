@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:padding="12dp"
+    android:padding="@dimen/dp_12"
     tools:context=".MainActivity">
 
     <com.google.android.material.button.MaterialButton

@@ -4,6 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:padding="@dimen/dp_12"
     tools:context=".book.BookActivity">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bookActivityMbGetBookList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/get_book_list"
+        app:layout_constraintBottom_toTopOf="@id/bookActivityMbAddBook"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bookActivityMbAddBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookActivityMbGetBookList" />
 </androidx.constraintlayout.widget.ConstraintLayout>

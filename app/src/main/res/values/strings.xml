@@ -5,4 +5,6 @@
     <string name="min">MIN</string>
     <string name="calculate">CALCULATE</string>
     <string name="book">BOOK</string>
+    <string name="get_book_list">GET BOOK LIST</string>
+    <string name="add_book">ADD BOOK</string>
 </resources>
