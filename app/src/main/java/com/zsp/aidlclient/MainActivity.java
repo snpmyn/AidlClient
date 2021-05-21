@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            // 计算页
             case R.id.mainActivityMbCalculate:
                 startActivity(new Intent(this, CalculateActivity.class));
                 break;
+            // 书籍页
             case R.id.mainActivityMbBook:
                 startActivity(new Intent(this, BookActivity.class));
                 break;

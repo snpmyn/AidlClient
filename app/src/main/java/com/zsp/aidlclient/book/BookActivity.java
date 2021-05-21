@@ -12,7 +12,6 @@ import com.zsp.aidlclient.R;
  * @date: 2021/5/21 9:48 上午
  */
 public class BookActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

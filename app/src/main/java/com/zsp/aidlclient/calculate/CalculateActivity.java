@@ -93,30 +93,22 @@ public class CalculateActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         int x = Integer.parseInt(calculateActivityEtNumberOne.getText().toString());
         int y = Integer.parseInt(calculateActivityEtNumberTwo.getText().toString());
-        switch (v.getId()) {
-            case R.id.calculateActivityMbAdd:
-                try {
+        try {
+            switch (v.getId()) {
+                case R.id.calculateActivityMbAdd:
                     Toast.makeText(this, "ADD " + calculateAidl.add(x, y), Toast.LENGTH_SHORT).show();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.calculateActivityMbMax:
-                try {
+                    break;
+                case R.id.calculateActivityMbMax:
                     Toast.makeText(this, "MAX " + calculateAidl.max(x, y), Toast.LENGTH_SHORT).show();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.calculateActivityMbMin:
-                try {
+                    break;
+                case R.id.calculateActivityMbMin:
                     Toast.makeText(this, "MIN " + calculateAidl.min(x, y), Toast.LENGTH_SHORT).show();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.getMessage());
         }
     }
 }
