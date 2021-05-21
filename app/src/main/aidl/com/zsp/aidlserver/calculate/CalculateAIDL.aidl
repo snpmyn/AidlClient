@@ -1,5 +1,5 @@
 // CalculateAIDL.aidl
-package com.zsp.aidlserver;
+package com.zsp.aidlserver.calculate;
 
 // Declare any non-default types here with import statements
 

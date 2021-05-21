@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.zsp.aidlclient.R;
-import com.zsp.aidlserver.CalculateAIDL;
+import com.zsp.aidlserver.calculate.CalculateAIDL;
 
 /**
  * @desc: 计算页
