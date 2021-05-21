@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context=".calculate.CalculateActivity">
+
+    <EditText
+        android:id="@+id/calculateActivityEtNumberOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/edit_text"
+        android:gravity="center"
+        android:inputType="number"
+        tools:ignore="Autofill,LabelFor" />
+
+    <EditText
+        android:id="@+id/calculateActivityEtNumberTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:drawable/edit_text"
+        android:gravity="center"
+        android:inputType="number"
+        tools:ignore="Autofill,LabelFor" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/calculateActivityMbAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/calculateActivityMbMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/max" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/calculateActivityMbMin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/min" />
+</LinearLayout>

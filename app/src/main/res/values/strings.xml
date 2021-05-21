@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AidlClient</string>
+    <string name="add">ADD</string>
+    <string name="max">MAX</string>
+    <string name="min">MIN</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="book">BOOK</string>
+</resources>
