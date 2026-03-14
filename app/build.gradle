@@ -6,7 +6,6 @@ android {
     namespace "com.zsp.aidlclient"
 
     compileSdkVersion 36
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.zsp.aidlclient"
@@ -23,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        aidl true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
