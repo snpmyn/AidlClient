@@ -1,6 +1,4 @@
-## AIDL CLIENT
-
-AIDL 客户端
+## AIDL 客户端
 
 ## AIDL
 
