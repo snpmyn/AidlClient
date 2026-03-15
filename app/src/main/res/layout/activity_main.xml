@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="@dimen/dp_12"
+    android:padding="@dimen/dp_20"
     tools:context=".MainActivity">
 
     <com.google.android.material.button.MaterialButton
@@ -18,5 +18,6 @@
         android:id="@+id/mainActivityMbBook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
         android:text="@string/book" />
 </LinearLayout>
