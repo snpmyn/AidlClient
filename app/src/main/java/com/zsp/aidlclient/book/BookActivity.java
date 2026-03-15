@@ -1,6 +1,5 @@
 package com.zsp.aidlclient.book;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -11,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -19,6 +19,7 @@ import com.zsp.aidlserver.book.Book;
 import com.zsp.aidlserver.book.BookAIDL;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @desc: 书籍页
@@ -78,37 +79,41 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
 
     private void bindService() {
         Intent intent = new Intent();
-        intent.setPackage("com.zsp.aidlserver");
-        intent.setAction("com.zsp.aidlserver.book.action");
-        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        // Android 5.0 以后官方推荐使用显式 Intent
+        // 不需要 intent-filter
+        // 不需要 action
+        // 不需要 category
+        // 更安全
+        // 启动更快
+        /*intent.setPackage("com.zsp.aidlserver");*/
+        /*intent.setAction("com.zsp.aidlserver.book.action");*/
+        intent.setComponent(new ComponentName("com.zsp.aidlserver", "com.zsp.aidlserver.book.BookService"));
+        boolean result = bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        Toast.makeText(this, "绑定服务 " + result, Toast.LENGTH_SHORT).show();
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         if (null == bookAidl) {
-            Toast.makeText(this, "BookAIDL null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "BookAIDL 空", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
-            switch (v.getId()) {
-                case R.id.bookActivityMbGetBookList:
-                    Toast.makeText(this, getBookName(bookAidl.getBookList()), Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.bookActivityMbAddBook:
-                    Book book = new Book("客户端添加新书 TAG InOut");
-                    bookAidl.addBookWithInOut(book);
-                    Toast.makeText(this, book.getName(), Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
+            int id = v.getId();
+            if (id == R.id.bookActivityMbGetBookList) {
+                Toast.makeText(this, getBookName(bookAidl.getBookList()), Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.bookActivityMbAddBook) {
+                Book book = new Book("客户端添加新书 TAG InOut");
+                bookAidl.addBookWithInOut(book);
+                Toast.makeText(this, book.getName(), Toast.LENGTH_SHORT).show();
             }
         } catch (RemoteException e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
     }
 
-    private String getBookName(List<Book> bookList) {
+    @NonNull
+    private String getBookName(@NonNull List<Book> bookList) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Book book : bookList) {
             stringBuilder.append(book.getName()).append("\n");

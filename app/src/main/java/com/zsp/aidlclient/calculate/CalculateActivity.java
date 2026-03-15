@@ -1,6 +1,5 @@
 package com.zsp.aidlclient.calculate;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -17,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.zsp.aidlclient.R;
 import com.zsp.aidlserver.calculate.CalculateAIDL;
+
+import java.util.Objects;
 
 /**
  * @desc: 计算页
@@ -83,36 +84,38 @@ public class CalculateActivity extends AppCompatActivity implements View.OnClick
 
     private void bindService() {
         Intent intent = new Intent();
-        intent.setPackage("com.zsp.aidlserver");
-        intent.setAction("com.zsp.aidlserver.calculate.action");
-        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        // Android 5.0 以后官方推荐使用显式 Intent
+        // 不需要 intent-filter
+        // 不需要 action
+        // 不需要 category
+        // 更安全
+        // 启动更快
+        /*intent.setPackage("com.zsp.aidlserver");*/
+        /*intent.setAction("com.zsp.aidlserver.calculate.action");*/
+        intent.setComponent(new ComponentName("com.zsp.aidlserver", "com.zsp.aidlserver.calculate.CalculateService"));
+        boolean result = bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        Toast.makeText(this, "绑定服务 " + result, Toast.LENGTH_SHORT).show();
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         int x = Integer.parseInt(calculateActivityEtNumberOne.getText().toString());
         int y = Integer.parseInt(calculateActivityEtNumberTwo.getText().toString());
         if (null == calculateAidl) {
-            Toast.makeText(this, "CalculateAIDL null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "CalculateAIDL 空", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
-            switch (v.getId()) {
-                case R.id.calculateActivityMbAdd:
-                    Toast.makeText(this, "ADD " + calculateAidl.add(x, y), Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.calculateActivityMbMax:
-                    Toast.makeText(this, "MAX " + calculateAidl.max(x, y), Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.calculateActivityMbMin:
-                    Toast.makeText(this, "MIN " + calculateAidl.min(x, y), Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
+            int id = v.getId();
+            if (id == R.id.calculateActivityMbAdd) {
+                Toast.makeText(this, "ADD " + calculateAidl.add(x, y), Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.calculateActivityMbMax) {
+                Toast.makeText(this, "MAX " + calculateAidl.max(x, y), Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.calculateActivityMbMin) {
+                Toast.makeText(this, "MIN " + calculateAidl.min(x, y), Toast.LENGTH_SHORT).show();
             }
         } catch (RemoteException e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
     }
 }

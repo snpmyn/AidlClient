@@ -1,10 +1,10 @@
 package com.zsp.aidlclient;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -38,20 +38,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainActivityMbBook.setOnClickListener(this);
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(@NonNull View v) {
+        int id = v.getId();
+        if (id == R.id.mainActivityMbCalculate) {
             // 计算页
-            case R.id.mainActivityMbCalculate:
-                startActivity(new Intent(this, CalculateActivity.class));
-                break;
+            startActivity(new Intent(this, CalculateActivity.class));
+        } else if (id == R.id.mainActivityMbBook) {
             // 书籍页
-            case R.id.mainActivityMbBook:
-                startActivity(new Intent(this, BookActivity.class));
-                break;
-            default:
-                break;
+            startActivity(new Intent(this, BookActivity.class));
         }
     }
 }
