@@ -22,7 +22,7 @@ Android 进程间通信（IPC）实现机制
 
 ## 编译阶段
 
-Android Studio 会根据 AIDL 文件生成 Stub 类、Proxy 类
+Android Studio 根据 AIDL 文件生成 Stub 类、Proxy 类
 
 Stub（服务端）：继承 Binder 并实现 onTransact()
 
