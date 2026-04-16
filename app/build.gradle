@@ -37,5 +37,4 @@ dependencies {
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'org.jetbrains:annotations:26.1.0'
-    implementation 'org.jetbrains:annotations:26.1.0'
 }
